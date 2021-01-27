@@ -1,13 +1,22 @@
-import React from 'react'
-import Layout from '../components/Layout'
+import React from "react"
+import SEO from '../components/seo'
+import Layout from "../containers/layout/layout"
+import Header from '../containers/layout/header'
+import Footer from '../containers/layout/footer'
+import ErrorArea from '../containers/404/error-area'
+import InstagramWrap from '../containers/global/instagram'
 
 const NotFoundPage = () => (
   <Layout>
-    <div>
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <SEO title="404" />
+    <Header/>
+    <div className="main-content">
+      <ErrorArea/>
+      <InstagramWrap/>
     </div>
+    <Footer/>
   </Layout>
 )
 
 export default NotFoundPage
+ 

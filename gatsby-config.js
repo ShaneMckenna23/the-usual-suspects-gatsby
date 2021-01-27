@@ -1,77 +1,135 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter',
-    description:
-      'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+    title: `Fatima`,
+    titleTemplate: `Creative React Gatsby Blog Template`,
+    description: `Kick off your next, great blogging website with this Gatsby template. This template ships with the main Gatsby configuration files you might need.`,
+    keywords: ["bootstrap", "react", "gatsby", "graphql", "markdown"],
+    siteLanguage: "en",
+    author: `@gatsbyjs`,
+    image: "banner.jpg",
+    siteUrl: "http://localhost:8000/",
+    mailchimp_endpoint:
+      "https://gmail.us19.list-manage.com/subscribe/post?u=9fac302a213ab56195e9125e7&amp;id=a30904c5f3",
+    disqus_shortname: "thern-1",
+    getform_url: "https://getform.io/f/7a6695a7-c8e3-442c-bc2f-d46d3b9a535e",
+    contact: {
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        instagram: "https://instagram.com",
+        linkedin: "https://linkedin.com",
+        youtube: "https://youtube.com",
+      },
+    },
+  },
+  mapping: {
+    "MarkdownRemark.frontmatter.author": `AuthorsJson.name`,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-ffmpeg`,
+    `gatsby-transformer-json`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
+        name: `resources`,
+        path: `${__dirname}/src/assets/resources`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
+        name: `data`,
+        path: `${__dirname}/src/data/`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
-      },
-    },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: `gatsby-remark-images`,
             options: {
-              name: 'uploads',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 2048,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'static',
+              maxWidth: 1920,
             },
           },
         ],
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: `gatsby-source-instagram`,
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
+        // type: `hashtag`,
+        // hashtag: `naturesbeauty`,
+        username: "10393110367",
+        // access_token: "EAAJfJNguJz4BAI3u9hxFCVJUwVgT39AzmO7nyRAPPEhHEiyyElx7cYSxbv5hHWMyopFM00R0wh7wfoghe7vfePBteFp9pKKkDJKdAPl0b1fKTkWu2s9nYhiYrxHnq28n3mZC4HUSYwxJeaurinARaOqxOzaVfwlBJZBEMApAZDZD",
+        // instagram_id: "rainbowit5"
       },
     },
     {
-      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        develop: true, // Activates purging in npm run develop
-        purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
+        name: `Fatima`,
+        short_name: `Fatima`,
+        start_url: `/`,
+        background_color: `#333333`,
+        theme_color: `#ffd2d1`,
+        display: `standalone`,
+        icons: [
+          {
+            src: "/icons/icon-72x72.png",
+            sizes: "72x72",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-96x96.png",
+            sizes: "96x96",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-128x128.png",
+            sizes: "128x128",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-144x144.png",
+            sizes: "144x144",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-152x152.png",
+            sizes: "152x152",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-384x384.png",
+            sizes: "384x384",
+            type: "image/png",
+          },
+          {
+            src: "/icons/icon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
       },
-    }, // must be after other CSS plugins
-    'gatsby-plugin-netlify', // make sure to keep it last in the array
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "http://localhost:8000/",
+        sitemap: "http://localhost:8000/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 }
